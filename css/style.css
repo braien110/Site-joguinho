@@ -42,7 +42,7 @@ main{
 .quadrado{
     width: 40px;
     height: 40px;
-    border-radius: 50%;
+    border-radius: 20px;
     background-color: rgba(248, 11, 11, 0.6);
     border: none;
     position: absolute;
