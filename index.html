@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clique no quadrado</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Clique na bolinha</h1>
+        </div>
+        <p id="pontos">pontos: </p>
+    </header>
+    <main>
+        <div class="container">
+            <div class="espaco">
+                <button id="quadrado" class="quadrado"></button>
+            </div>
+        </div>
+    <script>
+        const espaco = document.querySelector(".espaco");
+
+function moverBolinha() {
+    const larguraMax = espaco.clientWidth - quadrado.offsetWidth;
+    const alturaMax = espaco.clientHeight - quadrado.offsetHeight;
+
+    const x = Math.floor(Math.random() * larguraMax);
+    const y = Math.floor(Math.random() * alturaMax);
+    quadrado.style.position = "absolute"; 
+    quadrado.style.left = x + "px";
+    quadrado.style.top = y + "px";
+}
+        let quadrado = document.getElementById("quadrado");
+        let pontos = document.getElementById("pontos");
+        let ponto = 0;
+        let timer;
+function iniciarTempo() {
+    clearTimeout(timer); 
+    timer = setTimeout(() => {
+        gameOver();
+    }, 1000); 
+}
+
+function gameOver() {
+    quadrado.disabled = true; 
+    alert("Perdeu! Sua pontuação final foi: " + ponto);
+    location.reload(true);
+}
+quadrado.addEventListener("click", () => {
+    ponto++;
+    pontos.innerHTML = "Pontos: " + ponto;
+    iniciarTempo();
+    moverBolinha();
+});
+    </script>
+    </main>
+    <footer>
+        <div class="container">
+            <button id="reiniciar">Reiniciar</button>
+        </div>
+        <script>
+            let reiniciar = document.getElementById("reiniciar");
+            reiniciar.addEventListener("click", () => {
+                location.reload(true);
+            })
+        </script>
+    </footer>
+</body>
+<script src="js/script.js"></script>
+</html>
