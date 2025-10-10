@@ -10,8 +10,14 @@
     <header>
         <div class="container">
             <h1>Clique na bolinha</h1>
+            <select name="dificuldade" id="dificuldade" >
+                <option value="facil">Fácil</option>
+                <option value="medio">Médio</option>
+                <option value="dificil">Difícil</option>
+             </select>
         </div>
-        <p id="pontos">pontos: </p>
+        <p id="pontos">Pontos: 0 </p>
+        <!-- <p id="melhor-p"> Melhor pontuação: 0</p> -->
     </header>
     <main>
         <div class="container">
@@ -36,15 +42,34 @@ function moverBolinha() {
         let pontos = document.getElementById("pontos");
         let ponto = 0;
         let timer;
+        let dificuldade = document.getElementById("dificuldade");
+        let maior = document.getElementById("melhor-p");
+        let maiorp = 0;
+        console.log(dificuldade);
+        parseFloat(maiorp);
+        console.log(maiorp);
 function iniciarTempo() {
     clearTimeout(timer); 
-    timer = setTimeout(() => {
+    if(dificuldade.value == "facil"){
+            timer = setTimeout(() => {
+        gameOver();
+    }, 10000); 
+    } if(dificuldade.value == "medio"){
+            timer = setTimeout(() => {
+        gameOver();
+    }, 3000); 
+    } if (dificuldade.value == "dificil"){
+            timer = setTimeout(() => {
         gameOver();
     }, 1000); 
-}
+    }
 
+}
 function gameOver() {
     quadrado.disabled = true; 
+    if(maiorp < ponto){
+        maiorp.innerHTML = "Melhor pontuação: " + ponto;
+    }
     alert("Perdeu! Sua pontuação final foi: " + ponto);
     location.reload(true);
 }
@@ -54,7 +79,9 @@ quadrado.addEventListener("click", () => {
     iniciarTempo();
     moverBolinha();
 });
+
     </script>
+
     </main>
     <footer>
         <div class="container">
@@ -66,8 +93,7 @@ quadrado.addEventListener("click", () => {
                 location.reload(true);
             })
         </script>
-        <h1>Todos os direitos reservaods para Braien&copy;</h1>
+        <h1> Todos os direitos reservados para Braien&copy;</h1>
     </footer>
 </body>
-<script src="js/script.js"></script>
 </html>
